@@ -504,9 +504,11 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');
+  var halfScreenWidth = ((window.innerWidth > 0) ? window.innerWidth : screen.width) / 2; 
+  
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  items[i].style.transform = 'translateX('+(items[i].basicLeft + 100 * phase - halfScreenWidth) + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
