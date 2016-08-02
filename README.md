@@ -8,7 +8,7 @@ PART 1:
   -Optimized PageSpeed Insights score for index.html to 97-Mobile & 98-Desktop
   -Compressed pizzeria.jpg & profile.jpg
   -Minified and inlined style.css & print.css in index.html
-  -Async <script src="http://www.google-analytics.com/analytics.js">
+  -Added async to the Google analytics js
   
 PART 2:
 In views/js/main.js
