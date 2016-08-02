@@ -1,5 +1,24 @@
 ## Website Performance Optimization portfolio project
 
+
+ HOW TO RUN SITE:
+  View website here: https://grmgonz.github.io/frontend-nanodegree-mobile-portfolio/
+
+PART 1: 
+  -Optimized PageSpeed Insights score for index.html to 97-Mobile & 98-Desktop
+  -Compressed pizzeria.jpg & profile.jpg
+  -Minified and inlined style.css & print.css in index.html
+  -Async <script src="http://www.google-analytics.com/analytics.js">
+  
+PART 2:
+In views/js/main.js
+ -Fixed FSL for changing pizza sizes 
+ -Changed to getElementsByClassName in function updatePositions
+ -Changed number of pizzas being loaded from 200 to 30
+ 
+  
+  
+
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
 To get started, check out the repository and inspect the code.
