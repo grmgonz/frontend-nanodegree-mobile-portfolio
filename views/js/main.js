@@ -431,14 +431,14 @@ var resizePizzas = function(size) {
     return dx;
   }
 
-
+    //This is where I fixed the "Forced Synchronous Layout"  
     // Changes the slider value to a percent width
     var pizzaSizeChange = document.getElementsByClassName("randomPizzaContainer");
   var pizzaChangeLength = pizzaSizeChange.length;
   function changePizzaSizes(size) {
     var changedWidth; //defines variable used to update values for pizza slider
 
-    switch(size) { //check each case for the slider and return the assigned changedWidth value
+    switch(size) { 
       case "1":
         changedWidth = 25;
         break;
@@ -451,8 +451,8 @@ var resizePizzas = function(size) {
       default:
         console.log("bug in sizeSwitcher");
     }
-
-    for (var i = 0; i < pizzaChangeLength; i++) { //loop over each item contained in randomPizzaContainer and update its style.width property to a %
+//loop over each item contained in randomPizzaContainer and update its style.width property to a %
+    for (var i = 0; i < pizzaChangeLength; i++) { 
     pizzaSizeChange[i].style.width = changedWidth + '%';
 
     }
@@ -506,9 +506,11 @@ function updatePositions() {
   var items = document.getElementsByClassName('mover');
   var halfScreenWidth = ((window.innerWidth > 0) ? window.innerWidth : screen.width) / 2; 
   
+  //???Not sure how to fix the FSL in this part of the code??? 
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-  items[i].style.transform = 'translateX('+(items[i].basicLeft + 100 * phase - halfScreenWidth) + 'px)';
+    //Used transform:translate to accelerate the code. I got help from the forums and the webcasts for this part
+  items[i].style.transform = 'translateX('+(items[i].basicLeft + 100 * phase - halfScreenWidth) + 'px)'; 
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -528,6 +530,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  //I figured changing  the number of pizzas from 200 to 35 would help with loading the increasing the FPS
   for (var i = 0; i < 35; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
