@@ -5,16 +5,16 @@
   View website here: https://grmgonz.github.io/frontend-nanodegree-mobile-portfolio/
 
 PART 1: 
-  -Optimized PageSpeed Insights score for index.html to 97-Mobile & 98-Desktop
-  -Compressed pizzeria.jpg & profile.jpg
-  -Minified and inlined style.css & print.css in index.html
-  -Added async to the Google analytics js
+  *Optimized PageSpeed Insights score for index.html to 97-Mobile & 98-Desktop
+  *Compressed pizzeria.jpg & profile.jpg
+  *Minified and inlined style.css & print.css in index.html
+  *Added async to the Google analytics js
   
 PART 2:
 In views/js/main.js
- -Fixed FSL for changing pizza sizes 
- -Changed to getElementsByClassName in function updatePositions
- -Changed number of pizzas being loaded from 200 to 30
+ *Fixed FSL for changing pizza sizes 
+ *Changed to getElementsByClassName in function updatePositions
+ *Changed number of pizzas being loaded from 200 to 30
  
   
   
