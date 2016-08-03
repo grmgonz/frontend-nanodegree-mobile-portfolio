@@ -469,9 +469,13 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+
+
+//Removed variable out of for loop
+  var pizzasDiv = document.getElementById("randomPizzas");
+
 // This for-loop actually creates and appends all of the pizzas when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -503,15 +507,24 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('mover');
+//Variables needed for optimizing updatePositions function
+
+  var scroll = document.body.scrollTop; //Defining the scrollTop element
   var halfScreenWidth = ((window.innerWidth > 0) ? window.innerWidth : screen.width) / 2; 
+  var phases = []; // Phases array, defined before loop
   
-  //???Not sure how to fix the FSL in this part of the code??? 
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    //Used transform:translate to accelerate the code. I got help from the forums and the webcasts for this part
-  items[i].style.transform = 'translateX('+(items[i].basicLeft + 100 * phase - halfScreenWidth) + 'px)'; 
+  //Looping only the 5 phases to speed acceleration and remove performance bottleneck.
+  for (var i = 0; i < 5; i++) {
+    phases.push(Math.sin((scroll / 1250) + i));
   }
+  
+  //Loop over length array and return result.  I got help from the forums and the webcasts for this part.
+  var phase;
+  for (var i = 0; i < items.length; i++) {
+ phase = phases[i % 5];
+   items[i].style.transform = 'translateX('+(items[i].basicLeft + 100 * phase - halfScreenWidth) + 'px)'; //Using CSS3 Hardware acceleration(transform:translate VS. Stlye.left)
+}
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -530,8 +543,15 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //I figured changing  the number of pizzas from 200 to 35 would help with loading the increasing the FPS
-  for (var i = 0; i < 35; i++) {
+  
+   //Defining varibles to load the background pizzas dynamically
+  var winHeight = window.innerHeight;
+  var movingPizzas = document.getElementById("movingPizzas1");
+  var rows= Math.floor(winHeight / 256) + 1;
+  var backgroundPizzas = cols * rows;
+  
+  
+  for (var i = 0; i < backgroundPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -539,7 +559,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
+  window.items = document.getElementsByClassName('mover'); // Stored mover class needed for the loop as a global variable
   updatePositions();
 });
