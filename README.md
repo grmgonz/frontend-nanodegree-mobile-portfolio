@@ -10,12 +10,22 @@ PART 1:
 * Compressed pizzeria.jpg & profile.jpg
 * Minified and inlined style.css & print.css in index.html
 * Added async to the Google analytics js
+
+UPDATED CHANGES:
+* Added proper folder containing pizzeria-min.jpg in order to render image.
   
 PART 2:
 In views/js/main.js
 * Fixed FSL for changing pizza sizes 
 * Changed to getElementsByClassName in function updatePositions
 * Changed number of pizzas being loaded from 200 to 30
+
+UPDATED CHANGES:
+* Removed variable "pizzasDiv" out of for loop: line 474
+* Defined scrollTop element in a variable to remove forced bottleneck
+* Defined "phases" variable in as an array to improve FPS
+* Defined variables starting line: 548 to load pizzas dynamically to account for every screen size.
+* Line 564: Stored mover class needed for the loop as a global variable.
 
  
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
